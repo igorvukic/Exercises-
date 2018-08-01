@@ -1,0 +1,40 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Singleton Logger Excersise</h1>
+    </body>
+    <script>
+        let Logger = {
+            _instance: {
+                info: function (key, value){
+                    localStorage.setItem(key, "INFO: " + value);
+                    console.log(key + " INFO entry added: " + value);
+                },
+                warning: function (key, value){
+                    localStorage.setItem(key, "WARNING: " + value);
+                    console.log(key + " INFO entry added: " + value);
+                },
+                exception: function(key, value){
+                    localStorage.setItem(key, "EXCEPTION: " + value);
+                    console.log(key + " INFO entry added: " + value);
+                },
+                getEntry: function(key){
+                   return localStorage.getItem(key);
+                }
+            },
+    
+            getInstance: function(){
+                return this._instance
+            }
+        }
+    
+        let myLogger = Logger.getInstance();
+        myLogger.info('1','Prvi unos');
+        myLogger.warning('2','Drugi unos ');
+        myLogger.exception('3','Treci unos');
+        for(let i = 1; i < 4; i++){
+            console.log(myLogger.getEntry(i));
+        }
+    </script>
+</html>
+
